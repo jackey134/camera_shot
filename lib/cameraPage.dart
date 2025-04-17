@@ -78,11 +78,16 @@ class _CameraViewPageState extends State<CameraViewPage> {
       (camera) => camera.lensDirection == CameraLensDirection.back,
     );
     cameraController = CameraController(backCamera, ResolutionPreset.high);
+
     //啟動後更新UI
     cameraController?.initialize().then((_) {
+      cameraController!.setFlashMode(FlashMode.off);
       if (!mounted) return;
       setState(() {});
     });
+
+    
+    
   }
 
   //拍照
@@ -158,7 +163,8 @@ class _CameraViewPageState extends State<CameraViewPage> {
         continue;
       }
     }
-    devLog("圖片資料庫資料", imageInfoList.toString());
+    //顯示圖片資料庫
+    //devLog("圖片資料庫資料", imageInfoList.toString());
 
     return imageInfoList;
   }
